@@ -1,0 +1,53 @@
+           class Student:
+    rollNumber = None
+    name = None
+
+class Exam(Student):
+    marks = []
+
+
+class Result(Exam):
+    def print_total(self):
+        print(sum(self.marks))
+
+
+
+r = Result()
+
+
+r.name = (input("Enter name of student : "))
+r.rollNumber = int(input("Enter roll number of student : "))
+
+for i in range(1,7):
+    r.marks.append(int(input("Enter marks of "+str(i) + " subject : ")))
+
+print("Total marks : ")
+r.print_total()
+import img2pdf
+from PIL import Image
+import os
+
+img_path = "result.png"
+
+pdf_path = "result.pdf"
+ 
+# opening image
+image = Image.open(img_path)
+ 
+# converting into chunks using img2pdf
+pdf_bytes = img2pdf.convert(image.filename)
+ 
+# opening or creating pdf file
+file = open(pdf_path, "wb")
+ 
+# writing pdf files with chunks
+file.write(pdf_bytes)
+ 
+# closing image file
+image.close()
+ 
+# closing pdf file
+file.close()
+ 
+# output
+print("Successfully made pdf file")
